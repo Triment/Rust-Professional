@@ -1,0 +1,1 @@
+/Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution1/target/debug/solution1: /Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution1/src/count_distinct.rs /Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution1/src/main.rs

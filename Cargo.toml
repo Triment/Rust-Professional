@@ -13,13 +13,5 @@ log = "0.4"
 log4rs = "1.0"
 
 [[test]]
-name = "e1"
-path = "exercises/easy/algorithm1.rs"
-
-[[test]]
-name = "e2"
-path = "exercises/easy/algorithm2.rs"
-
-[[test]]
-name = "e3"
-path = "exercises/easy/algorithm3.rs"
+name = "e9"
+path = "exercises/easy/algorithm9.rs"

@@ -11,7 +11,7 @@ use std::fmt::Debug;
 #[derive(Debug)]
 struct TreeNode<T>
 where
-    T: Ord,
+    T: Ord+Debug,
 {
     value: T,
     left: Option<Box<TreeNode<T>>>,
@@ -21,12 +21,12 @@ where
 #[derive(Debug)]
 struct BinarySearchTree<T>
 where
-    T: Ord,
+    T: Ord+ Debug,
 {
     root: Option<Box<TreeNode<T>>>,
 }
 
-impl<T> TreeNode<T>
+impl<T: Debug> TreeNode<T>
 where
     T: Ord,
 {
@@ -41,7 +41,7 @@ where
 
 impl<T> BinarySearchTree<T>
 where
-    T: Ord,
+    T: Ord+Copy+Debug,
 {
 
     fn new() -> Self {
@@ -49,24 +49,65 @@ where
     }
 
     // Insert a value into the BST
-    fn insert(&mut self, value: T) {
+    fn insert(&mut self, value: T) where T: Debug {
         //TODO
+        if self.root.is_some() {
+            if self.root.as_ref().unwrap().value < value {
+                if self.root.as_ref().unwrap().right.is_none() {
+                    self.root.as_mut().unwrap().right = Some(Box::new(TreeNode::new(value)));
+                } else {
+                    self.root.as_mut().unwrap().right.as_mut().unwrap().insert(value);
+                }
+            }
+            if self.root.as_ref().unwrap().value > value {
+                if self.root.as_ref().unwrap().left.is_none() {
+                    self.root.as_mut().unwrap().left = Some(Box::new(TreeNode::new(value)));
+                } else {
+                    self.root.as_mut().unwrap().left.as_mut().unwrap().insert(value);
+                }
+            }
+        } else {
+            self.root = Some(Box::new(TreeNode::new(value)));
+        }
     }
 
     // Search for a value in the BST
-    fn search(&self, value: T) -> bool {
+    fn search(&self, value: T) -> bool where T: Debug {
         //TODO
-        true
+        let mut node = self.root.as_ref();
+        while node.is_some() {
+            println!("node value is {:?}", node.unwrap().value);
+            match node.unwrap().value.cmp(&value) {
+                Ordering::Equal => return true,
+                Ordering::Less => node = node.unwrap().right.as_ref(),
+                Ordering::Greater => node = node.unwrap().left.as_ref(),
+            }
+        }
+        false
     }
 }
 
-impl<T> TreeNode<T>
+impl<T: Debug> TreeNode<T>
 where
-    T: Ord,
+    T: Ord+Copy,
 {
     // Insert a node into the tree
     fn insert(&mut self, value: T) {
         //TODO
+        if self.value < value {
+            if self.right.is_none() {
+                self.right = Some(Box::new(TreeNode::new(value)));
+            } else {
+                self.right.as_mut().unwrap().insert(value);
+            }
+        }
+        if self.value > value {
+            if self.left.is_none() {
+                self.left = Some(Box::new(TreeNode::new(value)));
+            } else {
+                self.left.as_mut().unwrap().insert(value);
+            }
+        }
     }
 }
 
@@ -88,7 +129,6 @@ mod tests {
         bst.insert(7);
         bst.insert(2);
         bst.insert(4);
-
         
         assert_eq!(bst.search(5), true);
         assert_eq!(bst.search(3), true);
