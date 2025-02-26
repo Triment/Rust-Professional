@@ -14,4 +14,4 @@ log4rs = "1.0"
 
 [[test]]
 name = "exe"
-path = "exercises/easy/algorithm20.rs"
+path = "exercises/easy/algorithm11.rs"
