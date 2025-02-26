@@ -1,0 +1,1 @@
+/Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution2/target/debug/solution2: /Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution2/src/converter.rs /Users/as/Desktop/rust/Rust-Professional/exercises/normal/solution2/src/main.rs
