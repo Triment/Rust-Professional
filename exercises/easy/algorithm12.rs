@@ -13,7 +13,23 @@ use std::fmt::{self, Display, Formatter};
 
 pub fn is_palindrome(s: String) -> bool {
     // TODO: Implement the logic to check if the string is a palindrome
-    false // Placeholder return value
+    let binding = s.to_lowercase();
+    let s = binding.trim();
+    let mut left = 0;
+    let mut right = s.len() - 1;
+    while left < right {
+        if !s.chars().nth(left).unwrap().is_alphanumeric() {
+            left += 1;
+        } else if !s.chars().nth(right).unwrap().is_alphanumeric() {
+            right -= 1;
+        } else if s.chars().nth(left).unwrap() != s.chars().nth(right).unwrap() {
+            return false;
+        } else {
+            left += 1;
+            right -= 1;
+        }
+    }
+    true
 }
 
 #[cfg(test)]
@@ -39,6 +55,7 @@ mod tests {
     #[test]
     fn test_palindrome_3() {
         let s = "Hello, World!".to_string();
+        println!("Is palindrome: {}", s.trim().to_lowercase());
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
         assert_eq!(result, false);
