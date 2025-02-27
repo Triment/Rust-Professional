@@ -8,3 +8,6 @@ edition = "2021"
 [[test]]
 name = "tests"
 path = "src/tests.rs"
+[[bin]]
+name = "my_bin"
+path = "src/main.rs"

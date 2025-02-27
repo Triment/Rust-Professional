@@ -1,0 +1,1 @@
+/Users/as/Desktop/rust/Rust-Professional/exercises/hard/solutiont1/target/debug/my_bin: /Users/as/Desktop/rust/Rust-Professional/exercises/hard/solutiont1/src/conjecture.rs /Users/as/Desktop/rust/Rust-Professional/exercises/hard/solutiont1/src/main.rs
